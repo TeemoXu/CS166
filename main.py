@@ -26,20 +26,28 @@ Please submit a compressed folder containing all of the files associated with yo
 for testing your program. Note: you will be adding functionality to this system in a subsequent assignment, so take your
 time and plan out your design.
 '''
+
 import csv
 
-def loginInfo(dict, filename):
-    with open(filename, 'r') as csv_file:
-        data = csv.reader(csv_file, delimiter = ' ')
-        for row in data:
-            print(', '.join(row))
+def login(filename):
+    dic = {}
+    try:
+        with open(filename, 'r') as csv_file:
+            print("------------ Login ------------")
+            data = csv.reader(csv_file)
+            username = input("Enter your username: ").strip()
+            password = input("Enter your password: ").strip()
+            list_of_account = list(data)
+            for i in range(len(list_of_account)):
+                if list_of_account[i][0] == username and list_of_account[i][1] == password:
+                    print("login successful")
+                else:
+                    print("invalid username or password")
+                    break
+    except FileNotFoundError:
+        print("{} not found, program terminating...".format(filename))
+        exit()
 
-
-def login():
-    print("------------ Login ------------")
-    user_name = input("username: ").strip()
-    print("Password: ")
 
 if __name__ == "__main__":
-    users = {}
-    loginInfo(users, "User_info.csv")
+    login("user_info.csv")
