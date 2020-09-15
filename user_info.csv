@@ -1,4 +1,4 @@
 username,password,access
-UA,UA,1
-UB,UB,2
-UC,UC,3
+user_a,admin,1
+user_b,limited1,2
+user_c,limited2,3
